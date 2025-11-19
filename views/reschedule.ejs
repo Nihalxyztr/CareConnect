@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Reschedule Appointment - CareConnect</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <%- include('partials/header') %>
+
+    <main>
+        <section class="appointment-section">
+            <h2 class="section-title">Reschedule Appointment</h2>
+
+            <form class="appointment-form" method="POST" action="/reschedule/<%= appointment._id %>">
+                <label>New Date</label>
+                <input type="date" name="date" value="<%= appointment.date %>" required>
+
+                <label>New Time</label>
+                <select name="time" required>
+                    <% if (availableSlots.length === 0) { %>
+                        <option disabled>All slots full</option>
+                    <% } else { %>
+                        <option value="">Select Time</option>
+                        <% availableSlots.forEach(t => { %>
+                            <option value="<%= t %>"><%= t %></option>
+                        <% }) %>
+                    <% } %>
+                </select>
+
+                <button class="btn-primary">Save Changes</button>
+            </form>
+
+        </section>
+    </main>
+
+    <%- include('partials/footer') %>
+</body>
+</html>

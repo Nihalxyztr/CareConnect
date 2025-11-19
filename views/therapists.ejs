@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Our Doctors - CareConnect</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+    <%- include('partials/header') %>
+
+    <main>
+
+        <section class="doctors">
+
+            <h2 class="section-title">Our Expert Doctors</h2><br>
+
+            <!-- SEARCH + FILTER ICON -->
+            <div class="search-filter-box">
+                <input type="text" id="doctorSearch" placeholder="Search doctors..." class="search-bar">
+                <div id="filterBtn" class="filter-icon">☰ Filter</div>
+            </div>
+
+            <!-- FILTER DROPDOWN -->
+            <div id="filterMenu" class="filter-dropdown">
+                <form method="GET" action="/therapists">
+                    <button type="submit" name="specialization" value="Cardiologist">Cardiologist</button>
+                    <button type="submit" name="specialization" value="Dermatologist">Dermatologist</button>
+                    <button type="submit" name="specialization" value="Physician">Physician</button>
+                    <button type="submit" name="specialization" value="Psychiatrist">Psychiatrist</button>
+                    <button type="submit" name="specialization" value="Neurologist">Neurologist</button>
+                </form>
+            </div>
+
+            <!-- Doctor Cards -->
+            <div class="doctor-container">
+                <% doctors.forEach(doctor => { %>
+                    <div class="doctor-card">
+
+                        <h3><%= doctor.name %></h3>
+
+                        <p><strong>Specialization:</strong> <%= doctor.specialization %></p>
+                        <p><strong>Experience:</strong> <%= doctor.experience %></p>
+                        <p><strong>Rating:</strong> <%= doctor.rating %> ⭐</p>
+
+                        <div class="doctor-buttons">
+                            <a href="/doctor/<%= doctor._id %>" class="btn-secondary">View Profile</a>
+                            <a href="/book-appointment?doctor=<%= doctor._id %>" class="btn-primary">Book Appointment</a>
+                        </div>
+
+                    </div>
+                <% }) %>
+            </div>
+
+        </section>
+
+        <script>
+            // Toggle dropdown
+            const filterBtn = document.getElementById("filterBtn");
+            const filterMenu = document.getElementById("filterMenu");
+
+            filterBtn.addEventListener("click", () => {
+                filterMenu.classList.toggle("show-filter");
+            });
+
+            // Live Search
+            const searchBox = document.getElementById("doctorSearch");
+            const cards = document.querySelectorAll(".doctor-card");
+
+            searchBox.addEventListener("input", () => {
+                const text = searchBox.value.toLowerCase();
+
+                cards.forEach(card => {
+                    const name = card.querySelector("h3").innerText.toLowerCase();
+                    const spec = card.querySelector("p").innerText.toLowerCase();
+
+                    card.style.display =
+                        (name.includes(text) || spec.includes(text))
+                        ? ""
+                        : "none";
+                });
+            });
+        </script>
+
+    </main>
+
+    <%- include('partials/footer') %>
+
+</body>
+</html>
