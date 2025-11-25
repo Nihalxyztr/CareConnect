@@ -8,9 +8,9 @@
 <body>
     <%- include('partials/header') %>
 
-    <main>
-        <section class="appointment-section">
-            <h2 class="section-title">Reschedule Appointment</h2>
+    <main style="padding: 50px 8%; background: #f4f8fb; min-height: calc(100vh - 200px);">
+        <section class="appointment-section" style="max-width: 550px; margin: 0 auto; background: #ffffff; padding: 40px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);">
+            <h2 class="section-title" style="color: #0077b6; font-size: 2rem; margin-bottom: 30px; font-weight: 700; text-align: center;">Reschedule Appointment</h2>
 
             <form class="appointment-form" method="POST" action="/reschedule/<%= appointment._id %>">
                 <label>New Date</label>
@@ -28,7 +28,7 @@
                     <% } %>
                 </select>
 
-                <button class="btn-primary">Save Changes</button>
+                <button class="btn-primary" style="padding: 12px 32px; font-size: 1rem; font-weight: 600; border-radius: 8px; background: #0077b6; color: white; border: none; cursor: pointer; transition: all 0.3s ease; margin-top: 10px;">Save Changes</button>
             </form>
 
         </section>

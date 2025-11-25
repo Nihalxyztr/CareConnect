@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Video Call</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: #000;
+            color: white;
+            font-family: Arial;
+        }
+        #meet {
+            width: 100vw;
+            height: 100vh;
+        }
+    </style>
+
+    <!-- JITSI SCRIPT -->
+    <script src="https://meet.jit.si/external_api.js"></script>
+</head>
+
+<body>
+    <div id="meet"></div>
+
+    <script>
+        const roomId = "<%= roomId %>";
+
+        const domain = "meet.jit.si";
+
+        const options = {
+            roomName: "careconnect_appointment_" + roomId,
+            parentNode: document.querySelector('#meet'),
+            width: "100%",
+            height: "100%",
+            userInfo: {
+                displayName: "User"
+            }
+        };
+
+        const api = new JitsiMeetExternalAPI(domain, options);
+    </script>
+</body>
+</html>
