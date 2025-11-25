@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Doctor Register - CareConnect</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+  <%- include('partials/header') %>
+
+  <main class="auth-wrapper">
+    <div class="auth-box">
+      <h2>Doctor Registration</h2>
+
+      <form action="/doctor-register" method="POST" class="auth-form">
+        
+        <label>Name</label>
+        <input type="text" name="name" placeholder="Full Name" required>
+
+        <label>Email</label>
+        <input type="email" name="email" placeholder="Email" required>
+
+        <label>Password</label>
+        <input type="password" name="password" placeholder="Password" required>
+
+        <label>Specialization</label>
+        <select name="specialization" required>
+          <option value="" disabled selected>Select specialization</option>
+          <option value="Cardiologist">Cardiologist</option>
+          <option value="Dermatologist">Dermatologist</option>
+          <option value="Physician">Physician</option>
+          <option value="Psychiatrist">Psychiatrist</option>
+          <option value="Neurologist">Neurologist</option>
+        </select>
+        
+
+        <label>Experience</label>
+        <input type="text" name="experience" placeholder="E.g. 5 years" required>
+
+        <!-- ⭐ NEW FIELD ADDED -->
+        <label>Location</label>
+        <input type="text" name="location" placeholder="City / Area (e.g. Mumbai)" required>
+
+        <label>Description</label>
+        <textarea name="description" placeholder="Short description about doctor" rows="4" style="width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 8px; font-size: 1rem; font-family: inherit; resize: vertical;"></textarea>
+
+        <button type="submit" class="btn-primary">Register</button>
+
+        <p>
+          Already registered? <a href="/doctor-login">Login here</a>
+        </p>
+      </form>
+    </div>
+  </main>
+
+  <%- include('partials/footer') %>
+
+</body>
+</html>

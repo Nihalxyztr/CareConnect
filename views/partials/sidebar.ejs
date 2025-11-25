@@ -1,0 +1,21 @@
+<div class="sidebar">
+    <div class="sidebar-user">
+        <% if (user) { %>
+            <h3> Hi, <%= user.name %></h3>
+        <% } else { %>
+            <h3>Welcome</h3>
+        <% } %>
+    </div>
+
+    <ul class="sidebar-links">
+        <li><a href="/dashboard"> Home</a></li>
+        <li><a href="/dashboard/profile">Profile</a></li>
+        <li><a href="/dashboard/records">Health Records</a></li>
+        <li><a href="/dashboard/consultations">Consultations</a></li>
+        
+
+        <!-- ADD THIS -->
+
+        <li><a href="/logout">Logout</a></li>
+    </ul>
+</div>

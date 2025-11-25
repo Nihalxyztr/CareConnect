@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Book Appointment - CareConnect</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <%- include('partials/header') %>
+
+    <main style="padding: 50px 8%; background: #f4f8fb; min-height: calc(100vh - 200px);">
+        <section class="appointment-section" style="max-width: 550px; margin: 0 auto; background: #ffffff; padding: 40px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);">
+
+            <h2 class="section-title" style="color: #0077b6; font-size: 2rem; margin-bottom: 15px; font-weight: 700; text-align: center;">Book an Appointment</h2>
+            <p class="form-desc" style="color: #555; font-size: 1rem; margin-bottom: 30px; text-align: center; line-height: 1.6;">
+                Select your doctor & preferred time slot. 
+                Bookings start from tomorrow. No bookings on Sundays.
+            </p>
+
+            <!-- ================================
+                 STEP 1: SELECT DOCTOR + DATE
+            ================================= -->
+            <form class="appointment-form" method="GET" action="/book-appointment">
+
+                <!-- Doctor Dropdown -->
+                <select name="doctor" required>
+                    <option value="">Select Doctor</option>
+
+                    <% doctors.forEach(d => { %>
+                        <option value="<%= d._id %>" 
+                            <%= selectedDoctor == d._id ? "selected" : "" %>>
+                            <%= d.name %> — <%= d.specialization %>
+                        </option>
+                    <% }) %>
+                </select>
+
+                <!-- Date -->
+                <input type="date" 
+                       name="date" 
+                       value="<%= selectedDate || '' %>" 
+                       required>
+
+                <button class="btn-primary" style="padding: 12px 24px; font-size: 1rem; font-weight: 600; border-radius: 8px; background: #0077b6; color: white; border: none; cursor: pointer; transition: all 0.3s ease;">Check Availability</button>
+            </form>
+
+            <br>
+
+            <!-- ================================
+                 STEP 2: SHOW TIME SLOTS + FILE + DESCRIPTION
+            ================================= -->
+            <% if (selectedDoctor && selectedDate) { %>
+
+                <form class="appointment-form"
+                      method="POST"
+                      action="/book-appointment"
+                      enctype="multipart/form-data">
+
+                    <input type="hidden" name="doctor" value="<%= selectedDoctor %>">
+                    <input type="hidden" name="date" value="<%= selectedDate %>">
+
+                    <!-- Time Slots -->
+                    <select name="time" required>
+                        <% if (availableSlots.length === 0) { %>
+                            
+                            <option disabled>Appointments Full</option>
+
+                        <% } else { %>
+
+                            <option value="">Select Time</option>
+
+                            <% availableSlots.forEach(t => { %>
+                                <option value="<%= t %>"><%= t %></option>
+                            <% }) %>
+
+                        <% } %>
+                    </select>
+
+                    <!-- File Upload -->
+                    <label>Upload attachments for this appointment (optional)</label>
+                    <input type="file" name="appointmentFiles" multiple>
+
+                    <!-- ⭐ Description Field -->
+                    <label>Description / Reason for Visit</label>
+                    <textarea 
+                        name="description" 
+                        placeholder="Describe your issue..."
+                        required>
+                    </textarea>
+
+                    <button type="submit" class="btn-primary" style="padding: 12px 32px; font-size: 1rem; font-weight: 600; border-radius: 8px; background: #0077b6; color: white; border: none; cursor: pointer; transition: all 0.3s ease; margin-top: 10px;">Book Now</button>
+
+                </form>
+
+            <% } %>
+
+        </section>
+    </main>
+
+</body>
+</html>

@@ -1,11 +1,32 @@
 <header>
-    <nav class="navbar">
-        <a href="/"><img src="/images/logo.png" alt="CareConnect Logo" class="logo"></a>
-        <ul class="nav-links">
-            <li><a href="/">Home</a></li>
-            <li><a href="/therapists">Doctors</a></li>
-            <li><a href="/dashboard">Dashboard</a></li>
-            <li><a href="/login">Login</a></li>
-        </ul>
-    </nav>
+  <nav class="navbar">
+    <a href="/"><img src="/images/logo.png" class="logo"></a>
+
+    <ul class="nav-links">
+
+      <!-- COMMON TO ALL -->
+      <li><a href="/">Home</a></li>
+
+      <% if (!doctor) { %>
+        <!-- DOCTORS should NOT see doctor list -->
+        <li><a href="/therapists">Doctors</a></li>
+      <% } %>
+
+      <% if (doctor) { %>
+        <!-- DOCTOR LOGGED IN -->
+        <li><a href="/doctor-dashboard">Dr. <%= doctor.name %></a></li>
+        <li><a href="/doctor-logout">Logout</a></li>
+
+      <% } else if (user) { %>
+        <!-- NORMAL USER LOGGED IN -->
+        <li><a href="/dashboard"><%= user.name %></a></li>
+        <li><a href="/logout">Logout</a></li>
+
+      <% } else { %>
+        <!-- NO LOGIN -->
+        <li><a href="/login">Login</a></li>
+      <% } %>
+
+    </ul>
+  </nav>
 </header>

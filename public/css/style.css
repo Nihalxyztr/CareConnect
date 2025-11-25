@@ -206,35 +206,52 @@ footer {
   flex: 1 1 250px;
   max-width: 300px;
   background: #fff;
-  padding: 25px 20px;
-  border-radius: 15px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  padding: 30px 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   text-align: center;
-  transition: 0.3s ease;
+  transition: all 0.3s ease;
+  border: 1px solid #f0f0f0;
 }
 
 .doctor-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
 }
 
 .doctor-card h3 {
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   color: #0077b6;
+  font-size: 1.4rem;
+  font-weight: 600;
 }
 
 .doctor-card p {
   color: #555;
-  font-size: 0.95rem;
-  line-height: 1.5;
+  font-size: 1rem;
+  line-height: 1.8;
+  margin: 12px 0;
 }
 
-/* Make doctor card buttons smaller */
+/* Make doctor card buttons professional */
 .doctor-card .btn-primary {
-  padding: 6px 12px; /* smaller padding */
-  font-size: 0.9rem; /* slightly smaller text */
-  display: inline-block; /* prevent full-width stretching */
-  margin-top: 10px; /* some spacing from text */
+  padding: 10px 24px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  display: inline-block;
+  margin-top: 20px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  background: #0077b6;
+  color: white;
+  border: none;
+}
+
+.doctor-card .btn-primary:hover {
+  background: #023e8a;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 119, 182, 0.3);
 }
 
 
@@ -249,6 +266,33 @@ footer {
   background: #f4f8fb;
   padding: 20px;
 }
+/* ===== Enable scrolling & fix overlap without changing design ===== */
+
+/* allow page to scroll normally */
+body {
+  overflow-y: auto !important;
+}
+
+/* auth wrapper should start BELOW header */
+.auth-wrapper {
+  padding-top: 120px !important;   /* fix header overlap */
+  padding-bottom: 80px !important; /* fix footer overlap */
+  align-items: flex-start !important; 
+  min-height: auto !important;     /* lets content scroll */
+}
+
+/* responsive: keep same design but let it shrink slightly on small screens */
+@media (max-width: 480px) {
+  .auth-wrapper {
+    padding-top: 100px !important;
+    padding-bottom: 60px !important;
+  }
+
+  .auth-box {
+    width: 90%;
+  }
+}
+
 
 .auth-box {
   background: #ffffff;
@@ -284,6 +328,19 @@ footer {
   border-radius: 8px;
   font-size: 1rem;
 }
+.auth-input,
+.auth-form select {
+  padding: 12px;
+  margin-bottom: 18px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  width: 100%;
+  outline: none;
+  background: white;
+}
+
+
 
 .auth-form button {
   background-color: #0077b6;
@@ -428,12 +485,12 @@ footer {
 
 /* Appointment Section */
 .appointment-section {
-    max-width: 500px;
+    max-width: 550px;
     margin: 50px auto; /* center the form */
-    padding: 30px;
+    padding: 40px;
     background: #ffffff;
     border-radius: 12px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     text-align: center;
 }
 
@@ -454,24 +511,42 @@ footer {
 .appointment-form {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 18px;
+    text-align: left;
+}
+
+.appointment-form label {
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 6px;
+    display: block;
 }
 
 .appointment-form input,
 .appointment-form select,
-.appointment-form button {
-    padding: 12px 15px;
+.appointment-form textarea {
+    padding: 12px;
     font-size: 1rem;
     border-radius: 8px;
     border: 1px solid #ccc;
     outline: none;
-    transition: 0.3s;
+    transition: all 0.3s ease;
+    font-family: inherit;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .appointment-form input:focus,
-.appointment-form select:focus {
+.appointment-form select:focus,
+.appointment-form textarea:focus {
     border-color: #0077b6;
-    box-shadow: 0 0 8px rgba(0, 119, 182, 0.2);
+    box-shadow: 0 0 0 3px rgba(0, 119, 182, 0.1);
+}
+
+.appointment-form textarea {
+    resize: vertical;
+    min-height: 100px;
+    font-family: inherit;
 }
 
 /* Submit Button */
@@ -503,3 +578,259 @@ footer {
     }
 }
 
+/* =========================================================
+   SAFE DASHBOARD CSS
+   This will NOT affect navbar, header, or any other pages.
+   Everything is scoped inside .dashboard-container
+   ========================================================= */
+
+.dashboard-container {
+    display: flex;
+    height: calc(100vh - 80px);
+    background: #f4f7fb;
+    font-family: Arial, sans-serif;
+}
+
+/* ================= SIDEBAR ================= */
+.sidebar {
+    width: 240px;
+    background: #ffffff;
+    border-right: 1px solid #dce3ed;
+    padding: 20px 0;
+    box-shadow: 2px 0 6px rgba(0, 0, 0, 0.05);
+}
+
+.sidebar h3 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 22px;
+    color: #0077b6;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar ul li {
+    margin: 8px 0;
+}
+
+.sidebar ul li a {
+    display: block;
+    padding: 12px 20px;
+    font-size: 16px;
+    color: #2d3e50;
+    text-decoration: none;
+    border-left: 4px solid transparent;
+    transition: 0.3s ease;
+}
+
+.sidebar ul li a:hover,
+.sidebar ul li a.active {
+    background: #e8f0ff;
+    border-left: 4px solid #2a63ff;
+    color: #2a63ff;
+}
+
+/* ================= CONTENT AREA ================= */
+.dashboard-content {
+    flex: 1;
+    padding: 30px;
+    overflow-y: auto;
+}
+
+.dashboard-content h1,
+.dashboard-content h2,
+.dashboard-content h3 {
+    color: #2d3e50;
+    margin-bottom: 20px;
+}
+
+/* ================= CARDS ================= */
+.dashboard-content .card {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+    margin-bottom: 20px;
+}
+
+.dashboard-content .card p {
+    color: #444;
+}
+
+/* ================= BUTTONS ================= */
+.dashboard-content .btn-primary {
+    background: #2a63ff;
+    color: white;
+    padding: 10px 18px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s ease;
+}
+
+.dashboard-content .btn-primary:hover {
+    background: #1745d4;
+}
+
+.dashboard-content .btn-secondary {
+    background: white;
+    border: 2px solid #2a63ff;
+    color: #2a63ff;
+    padding: 8px 15px;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.dashboard-content .btn-secondary:hover {
+    background: #2a63ff;
+    color: white;
+}
+
+/* ================= TABLES (safe) ================= */
+.dashboard-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+.dashboard-content table th,
+.dashboard-content table td {
+    padding: 12px 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.dashboard-content table th {
+    background: #e8f0ff;
+    text-align: left;
+    color: #2a63ff;
+}
+
+.dash-title {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #1a73e8;
+  font-weight: 600;
+}
+
+.no-appointments {
+  color: #777;
+  font-size: 16px;
+}
+
+.appointment-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.appointment-card {
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  border: 1px solid #e5e9f2;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.appointment-card:hover {
+  transform: translateY(-3px);
+  transition: 0.2s ease;
+}
+
+.rebook-btn {
+  display: inline-block;
+  margin-top: 12px;
+  background: #1a73e8;
+  color: #fff;
+  padding: 8px 14px;
+  border-radius: 8px;
+  text-decoration: none;
+}
+.profile-container {
+    max-width: 400px;
+    margin-top: 20px;
+}
+
+.profile-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.profile-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-group label {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.doctor-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 12px;
+}
+
+.btn-secondary {
+    background: #ddd;
+    padding: 8px 14px;
+    border-radius: 6px;
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+}
+
+.search-filter-box {
+    display: flex;
+    justify-content: center;   /* center horizontally */
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+
+.filter-icon {
+    background-color: #007bff;
+    color: white;
+    padding: 8px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.filter-dropdown {
+    display: none;
+    background: white;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 6px;
+    width: 200px;
+    position: absolute;
+    margin-top: 5px;
+    z-index: 10;
+}
+
+.filter-dropdown.show-filter {
+    display: block;
+}
+
+.filter-dropdown button {
+    width: 100%;
+    padding: 8px;
+    margin: 4px 0;
+    border: none;
+    background: #f0f0f0;
+    cursor: pointer;
+}
+
+.filter-dropdown button:hover {
+    background: #e0e0e0;
+}

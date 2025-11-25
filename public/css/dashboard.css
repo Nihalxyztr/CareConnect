@@ -1,0 +1,421 @@
+/* =========================================================
+   SAFE DASHBOARD CSS
+   This will NOT affect navbar, header, or any other pages.
+   Everything is scoped inside .dashboard-container
+   ========================================================= */
+
+.dashboard-container {
+    display: flex;
+    height: calc(100vh - 80px);
+    background: #f4f8fb;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* ================= SIDEBAR ================= */
+.sidebar {
+    width: 260px;
+    background: #ffffff;
+    border-right: 1px solid #e5e9f2;
+    padding: 30px 0;
+    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.08);
+}
+
+.sidebar h3 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 24px;
+    color: #0077b6;
+    font-weight: 600;
+    padding: 0 20px;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar ul li {
+    margin: 4px 0;
+}
+
+.sidebar ul li a {
+    display: block;
+    padding: 14px 24px;
+    font-size: 16px;
+    color: #2d3e50;
+    text-decoration: none;
+    border-left: 4px solid transparent;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.sidebar ul li a:hover,
+.sidebar ul li a.active {
+    background: #e8f4f8;
+    border-left: 4px solid #0077b6;
+    color: #0077b6;
+    transform: translateX(2px);
+}
+
+/* ================= CONTENT AREA ================= */
+.dashboard-content {
+    flex: 1;
+    padding: 40px;
+    overflow-y: auto;
+    background: #f4f8fb;
+}
+
+.dashboard-content h1,
+.dashboard-content h2,
+.dashboard-content h3 {
+    color: #2d3e50;
+    margin-bottom: 20px;
+}
+
+/* ================= HEADER & TITLES ================= */
+.dashboard-header {
+    margin-bottom: 35px;
+    padding: 25px 30px;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.dashboard-header h2 {
+    color: #0077b6;
+    font-size: 1.8rem;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.dashboard-header p {
+    color: #555;
+    font-size: 1rem;
+    margin: 0;
+}
+
+.section-title {
+    color: #0077b6;
+    font-size: 2rem;
+    margin-bottom: 25px;
+    font-weight: 700;
+    padding-left: 5px;
+}
+
+/* ================= CARDS CONTAINER ================= */
+.cards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 25px;
+    margin-top: 20px;
+}
+
+/* ================= CARDS ================= */
+.dashboard-content .card {
+    background: #ffffff;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    margin-bottom: 0;
+    transition: all 0.3s ease;
+    border: 1px solid #f0f0f0;
+}
+
+.dashboard-content .card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.dashboard-content .card p {
+    color: #444;
+    line-height: 1.6;
+    margin: 8px 0;
+}
+
+.dashboard-content .card h3 {
+    color: #0077b6;
+    margin-bottom: 15px;
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+/* ================= BUTTONS ================= */
+.dashboard-content .btn-primary {
+    background: #0077b6;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 1rem;
+}
+
+.dashboard-content .btn-primary:hover {
+    background: #023e8a;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 119, 182, 0.3);
+}
+
+.dashboard-content .btn-secondary {
+    background: white;
+    border: 2px solid #0077b6;
+    color: #0077b6;
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    display: inline-block;
+}
+
+.dashboard-content .btn-secondary:hover {
+    background: #0077b6;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 119, 182, 0.3);
+}
+
+/* ================= TABLES (safe) ================= */
+.dashboard-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.dashboard-content table th,
+.dashboard-content table td {
+    padding: 15px 20px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.dashboard-content table th {
+    background: #0077b6;
+    text-align: left;
+    color: white;
+    font-weight: 600;
+}
+
+.dashboard-content table tr:hover {
+    background: #f8f9fa;
+}
+
+/* ================= FORMS ================= */
+.dashboard-content .appointment-form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.dashboard-content .appointment-form label {
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 6px;
+    display: block;
+}
+
+.dashboard-content .appointment-form input,
+.dashboard-content .appointment-form select,
+.dashboard-content .appointment-form textarea {
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    font-family: inherit;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.dashboard-content .appointment-form input:focus,
+.dashboard-content .appointment-form select:focus,
+.dashboard-content .appointment-form textarea:focus {
+    outline: none;
+    border-color: #0077b6;
+    box-shadow: 0 0 0 3px rgba(0, 119, 182, 0.1);
+}
+
+.dashboard-content .appointment-form textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+/* ================= FILE LISTS ================= */
+.dashboard-content .file-list,
+.dashboard-content ul[style*="list-style"] {
+    list-style: none;
+    padding: 0;
+}
+
+.dashboard-content .file-list li,
+.dashboard-content ul[style*="list-style"] li {
+    padding: 10px 15px;
+    margin: 8px 0;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border-left: 3px solid #0077b6;
+    transition: all 0.3s ease;
+}
+
+.dashboard-content .file-list li:hover,
+.dashboard-content ul[style*="list-style"] li:hover {
+    background: #e8f4f8;
+    transform: translateX(5px);
+}
+
+.dashboard-content .file-list li a,
+.dashboard-content ul[style*="list-style"] li a {
+    color: #0077b6;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.dashboard-content .file-list li a:hover,
+.dashboard-content ul[style*="list-style"] li a:hover {
+    text-decoration: underline;
+}
+
+/* ================= HR STYLING ================= */
+.dashboard-content hr {
+    border: none;
+    border-top: 1px solid #e5e9f2;
+    margin: 20px 0;
+}
+
+/* ================= NO APPOINTMENTS MESSAGE ================= */
+.dashboard-content p:only-child,
+.dashboard-content .no-appointments {
+    color: #777;
+    font-size: 1.1rem;
+    text-align: center;
+    padding: 40px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* ================= APPOINTMENT CARDS ================= */
+.dashboard-content .appointment-card {
+    background: #ffffff;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    transition: all 0.3s ease;
+    border: 1px solid #f0f0f0;
+}
+
+.dashboard-content .appointment-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.dashboard-content .appointment-card h3 {
+    color: #0077b6;
+    margin-bottom: 15px;
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+/* ================= APPOINTMENT GRID ================= */
+.dashboard-content .appointment-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 25px;
+    margin-top: 20px;
+}
+
+/* ================= APPOINTMENTS LIST ================= */
+.dashboard-content .appointments-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* ================= DASH TITLE ================= */
+.dashboard-content .dash-title {
+    color: #0077b6;
+    font-size: 2rem;
+    margin-bottom: 25px;
+    font-weight: 700;
+    padding: 25px 30px;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* ================= PROFILE CONTAINER ================= */
+.dashboard-content .profile-container {
+    max-width: 500px;
+    margin-top: 20px;
+}
+
+.dashboard-content .profile-form {
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.dashboard-content .profile-group {
+    margin-bottom: 20px;
+}
+
+.dashboard-content .profile-group label {
+    display: block;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+.dashboard-content .profile-group input,
+.dashboard-content .profile-group select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    font-family: inherit;
+    box-sizing: border-box;
+}
+
+.dashboard-content .profile-group input:focus,
+.dashboard-content .profile-group select:focus {
+    outline: none;
+    border-color: #0077b6;
+    box-shadow: 0 0 0 3px rgba(0, 119, 182, 0.1);
+}
+
+.dashboard-content .profile-group input:disabled {
+    background: #f5f5f5;
+    color: #777;
+    cursor: not-allowed;
+}
+
+/* ================= DANGER BUTTON ================= */
+.dashboard-content .btn-danger {
+    background: #dc3545;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+}
+
+.dashboard-content .btn-danger:hover {
+    background: #c82333;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(220, 53, 69, 0.3);
+}
