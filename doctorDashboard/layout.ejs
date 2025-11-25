@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Doctor Dashboard</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/dashboard.css">
+</head>
+
+<body>
+
+    <%- include("../partials/header") %>
+
+    <div class="dashboard-container">
+
+        <%- include("sidebar") %>
+
+        <div class="dashboard-content">
+            <%- include(page) %>
+        </div>
+
+    </div>
+
+</body>
+</html>

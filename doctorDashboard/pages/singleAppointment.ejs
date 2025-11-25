@@ -1,0 +1,98 @@
+<div class="dashboard-header">
+    <h2>Appointment Details</h2>
+    <p style="margin: 0; color: #555; font-size: 1rem; line-height: 1.8;">
+        <strong style="color: #333; display: inline-block; width: 100px;">Patient:</strong> 
+        <%= appointment.user.name %>
+    </p>
+</div>
+
+<div class="card">
+    <div style="margin-bottom: 18px;">
+        <p style="color: #555; font-size: 1rem; line-height: 1.8; margin: 10px 0;">
+            <strong style="color: #333; display: inline-block; width: 100px;">Date:</strong> 
+            <%= appointment.date %>
+        </p>
+        <p style="color: #555; font-size: 1rem; line-height: 1.8; margin: 10px 0;">
+            <strong style="color: #333; display: inline-block; width: 100px;">Time:</strong> 
+            <%= appointment.time %>
+        </p>
+        <p style="color: #555; font-size: 1rem; line-height: 1.8; margin: 10px 0;">
+            <strong style="color: #333; display: inline-block; width: 100px;">Email:</strong> 
+            <%= appointment.user.email %>
+        </p>
+    </div>
+
+    <div style="margin: 18px 0;">
+        <h3 style="color: #0077b6; font-size: 1.2rem; margin-bottom: 10px; font-weight: 600;">Description</h3>
+        <p style="color: #555; font-size: 1rem; line-height: 1.6; margin: 0; padding: 12px; background: #f8f9fa; border-radius: 8px; border-left: 3px solid #0077b6;">
+            <%= appointment.description || "No description provided." %>
+        </p>
+    </div>
+
+    <hr style="margin: 20px 0; border: none; border-top: 1px solid #e5e9f2;">
+
+    <div style="margin: 18px 0;">
+        <h3 style="color: #0077b6; font-size: 1.2rem; margin-bottom: 10px; font-weight: 600;">Attachments</h3>
+
+        <% if (!appointment.appointmentFiles || appointment.appointmentFiles.length === 0) { %>
+            <p style="color: #777; font-style: italic; padding: 12px; background: #f8f9fa; border-radius: 8px; margin: 0;">No files uploaded.</p>
+        <% } else { %>
+            <ul style="list-style: none; padding: 0; margin: 0;">
+                <% appointment.appointmentFiles.forEach(f => { %>
+                    <li style="padding: 10px 12px; margin: 6px 0; background: #f8f9fa; border-radius: 8px; border-left: 3px solid #0077b6; transition: all 0.3s ease;">
+                        <a href="/uploads/appointmentFiles/<%= f.filename %>" 
+                           target="_blank" 
+                           style="color: #0077b6; text-decoration: none; font-weight: 500; display: flex; align-items: center;">
+                            <span style="margin-right: 8px;">📎</span>
+                            <%= f.originalName %>
+                        </a>
+                    </li>
+                <% }) %>
+            </ul>
+        <% } %>
+    </div>
+
+    <hr style="margin: 20px 0; border: none; border-top: 1px solid #e5e9f2;">
+
+    <div style="margin: 18px 0;">
+        <h3 style="color: #0077b6; font-size: 1.2rem; margin-bottom: 15px; font-weight: 600;">Save Prescription</h3>
+
+        <form 
+            action="/doctor-dashboard/complete/<%= appointment._id %>"
+            method="POST"
+            enctype="multipart/form-data"
+            class="appointment-form"
+            style="margin-top: 0;">
+
+            <div style="margin-bottom: 15px;">
+                <label style="font-weight: 600; color: #333; margin-bottom: 6px; display: block;">Prescription Notes</label>
+                <textarea 
+                    name="text" 
+                    rows="5" 
+                    required 
+                    style="width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 8px; font-size: 1rem; font-family: inherit; transition: all 0.3s ease; box-sizing: border-box;"
+                    onfocus="this.style.borderColor='#0077b6'; this.style.boxShadow='0 0 0 3px rgba(0, 119, 182, 0.1)';"
+                    onblur="this.style.borderColor='#ccc'; this.style.boxShadow='none';">
+<%= appointment.prescription?.text || appointment.description || '' %></textarea>
+            </div>
+
+            <div style="margin-bottom: 18px;">
+                <label style="font-weight: 600; color: #333; margin-bottom: 6px; display: block;">Upload Prescription File</label>
+                <input 
+                    type="file" 
+                    name="prescriptionFile" 
+                    accept=".pdf,.jpg,.jpeg,.png" 
+                    style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 8px; font-size: 1rem; background: white; cursor: pointer; transition: all 0.3s ease; box-sizing: border-box;"
+                    onfocus="this.style.borderColor='#0077b6'; this.style.boxShadow='0 0 0 3px rgba(0, 119, 182, 0.1)';"
+                    onblur="this.style.borderColor='#ccc'; this.style.boxShadow='none';">
+            </div>
+
+            <button 
+                class="btn-primary" 
+                type="submit" 
+                style="padding: 12px 32px; font-size: 1rem; font-weight: 600; border-radius: 8px; background: #0077b6; color: white; border: none; cursor: pointer; transition: all 0.3s ease; width: 100%;">
+                Save & Complete Appointment
+            </button>
+        </form>
+    </div>
+</div>
