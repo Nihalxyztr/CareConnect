@@ -1,0 +1,52 @@
+<div class="dashboard-header">
+    <h2>Your Appointments</h2>
+    <p>Manage your upcoming appointments</p>
+</div>
+
+<% if (appointments.length === 0) { %>
+
+    <p class="no-appointments">No appointments booked.</p>
+
+<% } else { %>
+
+    <div class="appointments-list">
+
+        <% appointments.forEach(app => { %>
+
+            <div class="appointment-card">
+
+                <h3><%= app.doctor.name %></h3>
+
+                <p><strong>Date:</strong> <%= app.date %></p>
+                <p><strong>Time:</strong> <%= app.time %></p>
+
+                <!-- Join Video Button -->
+                <a href="/video/<%= app._id %>"
+                   class="btn-primary"
+                   style="margin-bottom: 10px; display:inline-block;">
+                    Join Video Call
+                </a>
+
+                <!-- Cancel Appointment -->
+                <form method="POST"
+                      action="/cancel-appointment"
+                      style="margin-top:10px;">
+                    <input type="hidden" name="id" value="<%= app._id %>">
+                    <button class="btn-danger"
+                            onclick="return confirm('Cancel appointment?')">
+                        Cancel
+                    </button>
+                </form>
+
+                <!-- Reschedule Button -->
+                <form action="/reschedule/<%= app._id %>" method="GET" style="margin-top:10px;">
+                    <button class="btn-primary">Reschedule</button>
+                </form>
+
+            </div>
+
+        <% }) %>
+
+    </div>
+
+<% } %>

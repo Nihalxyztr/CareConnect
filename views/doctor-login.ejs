@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Doctor Login - CareConnect</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+  <%- include('partials/header') %>
+
+  <main class="auth-wrapper">
+    <div class="auth-box">
+      <h2>Doctor Login</h2>
+
+      <form action="/doctor-login" method="POST" class="auth-form">
+        
+        <label>Email</label>
+        <input type="email" name="email" placeholder="Enter your email" required>
+
+        <label>Password</label>
+        <input type="password" name="password" placeholder="Enter your password" required>
+
+        <button type="submit" class="btn-primary">Login</button>
+
+        <p>
+          Not registered? <a href="/doctor-register">Create a doctor account</a>
+        </p>
+        <p>Are You a Patient?  <a href="/login">Login as Patient</a></p>
+      </form>
+    </div>
+  </main>
+
+  <%- include('partials/footer') %>
+
+</body>
+</html>

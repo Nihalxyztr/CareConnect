@@ -1,0 +1,55 @@
+<div class="dashboard-header">
+    <h2>Health Records</h2>
+    <p>Upload and manage your health records</p>
+</div>
+
+<!-- Upload Form -->
+<div class="card" style="max-width: 500px; margin-bottom: 30px;">
+    <form action="/dashboard/records/upload" method="POST" enctype="multipart/form-data" class="appointment-form">
+        <label>File (PDF, JPG, PNG)</label>
+        <input type="file" name="record" required>
+
+        <label>Description (optional)</label>
+        <input type="text" name="description" placeholder="e.g. Blood Test Report">
+
+        <button class="btn-primary" type="submit">Upload</button>
+    </form>
+</div>
+
+<h3 class="section-title">Your Uploaded Records</h3>
+
+<% if (user.healthRecords.length === 0) { %>
+    <p class="no-appointments">No records uploaded yet.</p>
+<% } else { %>
+
+    <div class="cards-container">
+
+        <% user.healthRecords.forEach(r => { %>
+            <div class="card">
+
+                <p><strong><%= r.originalName %></strong></p>
+                <p><%= r.description && r.description.trim() !== "" 
+                        ? r.description 
+                        : "No description provided" %></p>
+
+                <p style="color: #777; font-size: 0.9rem;">Uploaded: <%= new Date(r.uploadedAt).toLocaleString() %></p>
+
+                <div style="margin-top: 15px; display: flex; gap: 10px;">
+                    <a href="/uploads/healthRecords/<%= r.filename %>" 
+                       download 
+                       class="btn-secondary">
+                        Download
+                    </a>
+
+                    <form action="/dashboard/records/delete" method="POST" style="display:inline;">
+                        <input type="hidden" name="filename" value="<%= r.filename %>">
+                        <button class="btn-danger" type="submit" onclick="return confirm('Delete this record?')">Delete</button>
+                    </form>
+                </div>
+
+            </div>
+        <% }) %>
+
+    </div>
+
+<% } %>

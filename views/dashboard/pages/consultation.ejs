@@ -1,0 +1,76 @@
+<div class="dashboard-header">
+    <h2>Your Consultations</h2>
+    <p>View your completed consultations and prescriptions</p>
+</div>
+
+<%
+    const completed = appointments.filter(a => a.isCompleted);
+%>
+
+<% if (completed.length === 0) { %>
+
+    <p class="no-appointments">No completed consultations yet.</p>
+
+<% } else { %>
+
+    <div class="appointment-grid">
+
+        <% completed.forEach(app => { %>
+
+            <div class="appointment-card">
+
+                <h3>Dr. <%= app.doctor.name %></h3>
+
+                <p><strong>Date:</strong> <%= app.date %></p>
+                <p><strong>Time:</strong> <%= app.time %></p>
+
+                <% if (app.description) { %>
+                    <p><strong>Your Message:</strong> <%= app.description %></p>
+                <% } %>
+
+                <hr>
+
+                <% if (app.prescription && app.prescription.text) { %>
+
+                    <p><strong>Prescription</strong></p>
+
+                    <% if (app.prescription.date) { %>
+                        <p><strong>Date:</strong> <%= app.prescription.date.toDateString() %></p>
+                    <% } %>
+
+                    <p><%= app.prescription.text %></p>
+
+                    <% if (app.prescription.file) { %>
+                        <a href="/uploads/prescriptions/<%= app.prescription.file %>"
+                           class="btn-primary"
+                           target="_blank">
+                           Download Prescription
+                        </a>
+                    <% } %>
+
+                <% } else { %>
+
+                    <p><em>Prescription not uploaded yet.</em></p>
+
+                <% } %>
+
+                <!-- DELETE BUTTON -->
+                <form action="/dashboard/consultations/delete" 
+                      method="POST" 
+                      style="margin-top: 15px; text-align:right;">
+
+                    <input type="hidden" name="id" value="<%= app._id %>">
+
+                    <button class="btn-danger"
+                            onclick="return confirm('Delete this consultation?')">
+                        Delete
+                    </button>
+                </form>
+
+            </div>
+
+        <% }) %>
+
+    </div>
+
+<% } %>
