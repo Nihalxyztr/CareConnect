@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Admin Login — CareConnect</title>
+
+  <link rel="stylesheet" href="/css/style.css">
+
+  <style>
+    body {
+      background: #f4f8fb;
+    }
+
+    .admin-auth {
+      min-height: 85vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .admin-box {
+      width: 100%;
+      max-width: 420px;
+      background: #fff;
+      padding: 40px 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    .admin-box h2 {
+      color: #0077b6;
+      margin-bottom: 20px;
+      font-size: 1.8rem;
+    }
+
+    .admin-box .err {
+      background: #ffe1e1;
+      padding: 10px;
+      border-radius: 8px;
+      color: #d32f2f;
+      margin-bottom: 15px;
+    }
+
+    .admin-box label {
+      display: block;
+      text-align: left;
+      margin-top: 10px;
+      font-weight: 600;
+      color: #333;
+    }
+
+    .admin-box input {
+      width: 100%;
+      padding: 12px;
+      margin-top: 6px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      outline: none;
+      font-size: 1rem;
+    }
+
+    .admin-box input:focus {
+      border-color: #0077b6;
+      box-shadow: 0 0 8px rgba(0,117,182,0.2);
+    }
+
+    .admin-box button {
+      width: 100%;
+      margin-top: 20px;
+      padding: 12px;
+      border: none;
+      background: #0077b6;
+      color: #fff;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .admin-box button:hover {
+      background: #023e8a;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 119, 182, 0.3);
+    }
+  </style>
+</head>
+
+<body>
+
+  <main class="admin-auth">
+    <div class="admin-box">
+
+      <h2>Admin Login</h2>
+
+      <% if (error) { %>
+        <div class="err"><%= error %></div>
+      <% } %>
+
+      <form action="/admin/login" method="POST">
+
+        <label>Email</label>
+        <input type="email" name="email" required>
+
+        <label>Password</label>
+        <input type="password" name="password" required>
+
+        <button type="submit">Login</button>
+
+      </form>
+
+    </div>
+  </main>
+
+</body>
+</html>
