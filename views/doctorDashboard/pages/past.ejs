@@ -1,0 +1,64 @@
+<div class="dashboard-header">
+    <h2>Past Appointments</h2>
+    <p>All completed consultations</p>
+</div>
+
+<h3 class="section-title">Completed Appointments</h3>
+
+<% if (!appointments || appointments.length === 0) { %>
+
+    <p>No past appointments found.</p>
+
+<% } else { %>
+
+    <div class="cards-container">
+
+        <% appointments.forEach(a => { %>
+
+            <div class="card">
+
+                <p><strong>Patient:</strong> <%= a.user.name %></p>
+                <p><strong>Email:</strong> <%= a.user.email %></p>
+                <p><strong>Date:</strong> <%= a.date %></p>
+                <p><strong>Time:</strong> <%= a.time %></p>
+
+                <% if (a.description) { %>
+                    <p><strong>Patient Message:</strong> <%= a.description %></p>
+                <% } %>
+
+                <hr style="margin: 15px 0; border: none; border-top: 1px solid #eee;">
+
+                <!-- Prescription -->
+                <% if (a.prescription && a.prescription.text) { %>
+
+                    <p><strong>Prescription</strong></p>
+
+                    <% if (a.prescription.date) { %>
+                        <p><strong>Date:</strong> <%= a.prescription.date.toDateString() %></p>
+                    <% } %>
+
+                    <p><%= a.prescription.text %></p>
+
+                    <% if (a.prescription.file) { %>
+                        <div style="margin-top: 12px;">
+                            <a href="/uploads/prescriptions/<%= a.prescription.file %>"
+                               target="_blank"
+                               class="btn-primary">
+                                Download Prescription
+                            </a>
+                        </div>
+                    <% } %>
+
+                <% } else { %>
+
+                    <p><em>No prescription uploaded.</em></p>
+
+                <% } %>
+
+            </div>
+
+        <% }) %>
+
+    </div>
+
+<% } %>
